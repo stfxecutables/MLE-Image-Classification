@@ -1,5 +1,8 @@
+from typing import Union
+
 import tensorflow.keras
 from tensorflow.keras import Sequential
+from tensorflow.keras.activations import relu
 from tensorflow.keras.layers import (
     BatchNormalization,
     Conv2D,
@@ -8,9 +11,6 @@ from tensorflow.keras.layers import (
     Dense,
     Flatten,
 )
-from tensorflow.keras.activations import relu
-
-from typing import Union
 
 
 def get_architecture(
