@@ -180,6 +180,25 @@ class Ensemble:
         :param directory: Path object containing path to directory where models and meta data are to be saved
         :return: None
         """
+        if not Path.is_dir(directory):
+            self.logger.warning(
+                "Directory not found for ensemble. Creating directory to store models"
+            )
+            try:
+                directory.mkdir(parents=True, exist_ok=True)
+            except OSError:
+                self.logger.error(
+                    f"Could not create directory to save ensemble. Check path {directory}"
+                )
+
+                # save ensemble in temp directory
+                temp_ensemble_num = 1
+                directory = Path(f"./temp/temp_ensemble_{temp_ensemble_num}")
+                while directory.is_dir():
+                    temp_ensemble_num += 1
+                    directory = Path(f"./temp/temp_ensemble_{temp_ensemble_num}")
+                self.logger.info(f"Saving ensemble to temp directory: {directory}")
+
         with open(directory.joinpath("meta_data.txt"), "w") as meta_file:
             meta_file.write(json.dumps(self.meta_data))
             self.logger.info(
