@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 import idx2numpy
 import numpy as np
@@ -84,6 +84,28 @@ def get_subset(
     test_labels = test_labels[test_set] == train_set[0]
 
     return (train_data, train_labels), (val_data, val_labels), (test_data, test_labels)
+
+
+def get_dataset(
+    dataset: str, validation_proportion: float = 0.0, classes: List = None
+) -> Union[Tuple, None]:
+    """
+    gets dataset based on dataset string name specified
+    :param dataset: string representing dataset in use
+    :param validation_proportion: float between 0.0-1.0 to specify proportion of original training set to use for
+    creating validation split
+    :param classes: List of classes from the original set to use to create subset (if this is not specified, all classes
+    will be used)
+    :return: tuple of training set, validation/training phase 2 set, testing set.
+    "set" here is a tuple of training and testing numpy arrays
+    """
+    if dataset == "MNIST" or dataset == "MNIST_BIN":
+        return get_mnist(validation_proportion, classes)
+    elif dataset == "F_MNIST" or dataset == "F_MNIST_BIN":
+        return get_fashion_mnist(validation_proportion, classes)
+    elif dataset == "CIFAR10" or dataset == "CIFAR10_BIN":
+        return get_cifar10(validation_proportion, classes)
+    return None
 
 
 def get_fashion_mnist(
