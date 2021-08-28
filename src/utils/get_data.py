@@ -1,9 +1,9 @@
-import idx2numpy
-import numpy as np
-
-from sklearn.model_selection import train_test_split
 from pathlib import Path
 from typing import List, Tuple
+
+import idx2numpy
+import numpy as np
+from sklearn.model_selection import train_test_split
 
 
 def read_saved(data_dir: Path) -> Tuple:
