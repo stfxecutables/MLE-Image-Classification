@@ -22,7 +22,7 @@ def get_architecture(
     :param units: number of classes in training labels (or number of units in final softmax-layer)
     :return: Keras sequential model or None (if dataset name is not recognized)
     """
-    if dataset == "MNIST" or dataset == "MNIST_BIM":
+    if dataset == "MNIST" or dataset == "MNIST_BIN":
         return mnist_architecture(units)
     elif dataset == "F_MNIST" or dataset == "F_MNIST_BIN":
         return fashion_mnist_architecture(units)
