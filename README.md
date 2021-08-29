@@ -1,4 +1,10 @@
 # MLE-Image-Classification
+
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5334604.svg)](https://doi.org/10.5281/zenodo.5334604)
+
+
+
 Meta-learning ensemble framework for image classification with convolutional neural networks
 
 
