@@ -131,3 +131,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Generated data and models
+data/splits/
+models/
