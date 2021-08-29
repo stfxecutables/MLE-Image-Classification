@@ -154,7 +154,7 @@ class Ensemble:
             train_y, test_y = y[train_idx], y[test_idx]
 
             self.logger.info(f"Starting training for model {model_num} in Ensemble")
-            self.models[0].fit(
+            self.models[model_num].fit(
                 x=train_X,
                 y=train_y,
                 validation_data=(test_X, test_y),
