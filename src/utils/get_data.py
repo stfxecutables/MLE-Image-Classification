@@ -61,8 +61,8 @@ def get_subset(
     test_labels,
 ) -> Tuple:
     """
-    creates a subset of training, validation, and testing set using the specified list of classes to select
-    :param classes: list of classes in the labels that are to be selected in the subset
+    creates a binary subset of training, validation, and testing set using the specified list of classes to select
+    :param classes: list of classes in the labels that are to be selected in the subset (only specify two)
     :param train_data: list or numpy array containing training data
     :param train_labels: list or numpy array containing training labels
     :param val_data: list or numpy array containing validation/training phase 2 data
@@ -77,11 +77,11 @@ def get_subset(
     test_set = np.isin(test_labels, classes)
 
     train_data = train_data[train_set]
-    train_labels = train_labels[train_set] == train_set[0]
+    train_labels = train_labels[train_set] == classes[0]
     val_data = val_data[val_set]
-    val_labels = val_labels[val_set] == train_set[0]
+    val_labels = val_labels[val_set] == classes[0]
     test_data = test_data[test_set]
-    test_labels = test_labels[test_set] == train_set[0]
+    test_labels = test_labels[test_set] == classes[0]
 
     return (train_data, train_labels), (val_data, val_labels), (test_data, test_labels)
 
