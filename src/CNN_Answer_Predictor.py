@@ -30,9 +30,8 @@ class CNNAnswerPredictor:
         layer_out = Conv1D(64, kernel_size=self.num_classes, activation="sigmoid")(
             model_input
         )
-        layer_out = Conv1D(128, kernel_size=2, activation="linear")(layer_out)
         layer_out = Dropout(0.2)(layer_out)
-        layer_out = Conv1D(64, kernel_size=2, activation="linear")(layer_out)
+
         layer_out = Dense(128)(layer_out)
         layer_out = Dropout(0.2)(layer_out)
 
