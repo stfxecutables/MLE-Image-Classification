@@ -5,12 +5,7 @@ from typing import Tuple
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.callbacks import EarlyStopping, TerminateOnNaN, ReduceLROnPlateau
-from tensorflow.keras.utils import to_categorical
 
-from src.CNN_Answer_Predictor import CNNAnswerPredictor
-from src.Ensemble import Ensemble
-from src.GA import GA
 from src.utils.base_models import get_architecture
 from src.utils.get_data import get_dataset
 
@@ -32,6 +27,8 @@ def format_data(X: np.ndarray, y: np.ndarray) -> Tuple:
     :return: Tuple containing data with channels and one-hot encoded labels
     """
     assert 3 <= X.ndim <= 4, "Image dimensions not supported"
+
+    from tensorflow.keras.utils import to_categorical
 
     # if image data doesn't have channels, create a fake - greyscale channel
     if X.ndim == 3:
@@ -55,6 +52,8 @@ def ga_predict(
     :param prediction_matrix_test: prediction matrix generated on testing data
     :return: None
     """
+    from src.GA import GA
+
     weight_matrix_optimizer = GA(prediction_matrix_s2, labels_s2, GA_POPULATION)
     for generation_num in range(GA_GENERATIONS):
         weight_matrix_optimizer.next_gen()
@@ -79,6 +78,8 @@ def cnn_predict(
     :param prediction_matrix_test: prediction matrix generated on testing data
     :return: None
     """
+    from src.CNN_Answer_Predictor import CNNAnswerPredictor
+
     super_learner = CNNAnswerPredictor(NUM_BASE_LEARNERS, UNITS)
     super_learner.train(prediction_matrix_s2, labels_s2)
 
@@ -119,6 +120,9 @@ def generate_ensemble():
     ROOT_DIR/models. Prediction matrices for all data splits are saved
     :return:
     """
+    from tensorflow.keras.callbacks import EarlyStopping, TerminateOnNaN, ReduceLROnPlateau
+    from src.Ensemble import Ensemble
+
     tr1_X, tr1_y = format_data(train_X, train_y)
     tr2_X, tr2_y = format_data(val_X, val_y)
     tst_X, tst_y = format_data(test_X, test_y)
