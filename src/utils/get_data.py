@@ -289,7 +289,7 @@ def get_cifar10(validation_proportion: float = 0.0, classes: List = None) -> Tup
             dict = pickle.load(fo, encoding="bytes")
         return dict
 
-    split_dir = Path("data/splits/cifar10-" + str(validation_proportion))
+    split_dir = Path("data/splits/cifar-10" + str(validation_proportion))
 
     if Path.is_dir(split_dir):
         (
