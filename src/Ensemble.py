@@ -224,11 +224,11 @@ class Ensemble:
             above_threshold = kb.cast(
                 kb.greater(y_pred, training_threshold), kb.floatx()
             )
-            # Cast to 0.01 * value for every value below threshold and 0 otherwise
+            # Cast to 0.1 * value for every value below threshold and 0 otherwise
             below_threshold = (
                 y_pred
                 * kb.cast(kb.less_equal(y_pred, training_threshold), kb.floatx())
-                * 0.01
+                * 0.1
             )
             # Add two tensor matrices calculated above
             new_pred = above_threshold + below_threshold
