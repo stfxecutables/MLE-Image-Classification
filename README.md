@@ -1,7 +1,8 @@
 # MLE-Image-Classification
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5334604.svg)](https://doi.org/10.5281/zenodo.5334604)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5595409.svg)](https://doi.org/10.5281/zenodo.5595409)
+
 
 
 
